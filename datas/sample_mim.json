@@ -1,0 +1,99 @@
+[
+  {
+    "type": "heading",
+    "level": 1,
+    "children": [
+      {
+        "type": "text",
+        "value": "私の一日"
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "level": 2,
+    "children": [
+      {
+        "type": "text",
+        "value": "朝のルーティン"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children":[
+      {
+        "type": "text",
+        "value": "毎朝、"
+      },
+      {
+        "type": "strong",
+        "children": [
+          {
+            "type": "text",
+            "value": "コーヒー"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "を飲みながら、"
+      },
+      {
+        "type": "italic",
+        "children":[
+          {
+            "type": "text",
+            "value": "ニュース"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "を読みます。"
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "children":[
+      {
+        "type": "list_item",
+        "children": [
+          {
+            "type": "text",
+            "value": "Markdownの書き方"
+          }
+        ]
+      },
+      {
+        "type": "list_item",
+        "children": [
+          {
+            "type": "text",
+            "value": "Gitの基本操作"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "type": "text",
+        "value": "参考資料："
+      },
+      {
+        "type": "link",
+        "url": "https:/example.com/",
+        "children":[
+          {
+            "type": "text",
+            "value": "markdown Guide"
+          }
+        ]
+      }
+    ]
+  }
+]
