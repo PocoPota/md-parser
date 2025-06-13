@@ -87,11 +87,3 @@ const generator =  (ast: Array<Token>) =>{
 }
 
 export default generator;
-
-
-// ファイルへ書き込み
-// import fs from "fs";
-// fs.writeFile("./dev1/static/sample.html", html, (err: NodeJS.ErrnoException | null) => {
-//   if (err) throw err;
-//   console.log('正常に書き込みが完了しました');
-// });
