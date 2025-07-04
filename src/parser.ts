@@ -8,15 +8,22 @@ const parser = (markdown: string) => {
       "type": "text",
       "value": node
     }
-    if(is_line_first && node.startsWith("#")){
-      const part_string = node.split(" ");
-      for (let i = 0; i < part_string[0].length; i++){
-        if(part_string[0][i] != "#") return _parser(node, false);
-      }
-      part_ast = {
-        "type": "heading",
-        "level": part_string[0].length,
-        "children": [_parser(node.slice(part_string.length - 1), false) ?? {"type": "text", "value": ""}]
+    if(is_line_first){
+      if(node.startsWith("#")){
+        const part_string = node.split(" ");
+        for (let i = 0; i < part_string[0].length; i++){
+          if(part_string[0][i] != "#") return _parser(node, false);
+        }
+        part_ast = {
+          "type": "heading",
+          "level": part_string[0].length,
+          "children": [_parser(node.slice(part_string[0].length + 1), false)]
+        }
+      }else{
+        part_ast = {
+          "type": "paragraph",
+          "children": [_parser(node, false)]
+        }
       }
     }
     return part_ast;
