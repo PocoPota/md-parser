@@ -38,6 +38,7 @@ const parser = (markdown: string) => {
     const line = lines[i];
     let part_ast: Array<Token> = [];
     if (line.startsWith("#")) {
+      // heading 処理
       const part_string = line.split(" ");
       for (let j = 0; j < part_string[0].length; j++) {
         if (part_string[0][j] != "#") return _parser(line);
@@ -49,6 +50,32 @@ const parser = (markdown: string) => {
           children: [..._parser(line.slice(part_string[0].length + 1))],
         },
       ];
+    } else if (line.startsWith("- ")) {
+      // list 処理
+      // 以降のlineもチェック
+      const list_items = [];
+      const parsed_list_items: Array<Token> = [];
+      let k = 0;
+      for (k; (i+k) < lines.length; k++) {
+        if (lines[i + k].startsWith("- ")) {
+          list_items.push(lines[i + k]);
+        } else {
+          break;
+        }
+      }
+      list_items.map((list_item) => {
+        parsed_list_items.push({
+          type: "list_item",
+          children: [..._parser(list_item.slice(2))]
+        })
+      });
+      part_ast = [
+        {
+          type: "list",
+          children: [...parsed_list_items],
+        },
+      ];
+      i += k;
     } else {
       part_ast = [
         {
