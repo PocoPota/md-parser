@@ -3,5 +3,5 @@ export type Token = {
   children?: Array<Token>;
   value?: string;
   level?: number;
-  url? : string;
-}
+  url?: string;
+};

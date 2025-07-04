@@ -13,9 +13,9 @@
 // });
 
 import parser from "./parser";
-import {readFileSync} from "fs";
+import { readFileSync } from "fs";
 import path from "path";
 
 const filePath = path.join(__dirname, "..", "datas", "prs_sample.md");
 const markdown = readFileSync(filePath, "utf-8");
-console.dir(parser(markdown), {depth: null})
+console.dir(parser(markdown), { depth: null });
