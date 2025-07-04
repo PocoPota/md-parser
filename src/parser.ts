@@ -39,8 +39,8 @@ const parser = (markdown: string) => {
     let part_ast: Array<Token> = [];
     if (line.startsWith("#")) {
       const part_string = line.split(" ");
-      for (let i = 0; i < part_string[0].length; i++) {
-        if (part_string[0][i] != "#") return _parser(line);
+      for (let j = 0; j < part_string[0].length; j++) {
+        if (part_string[0][j] != "#") return _parser(line);
       }
       part_ast = [
         {
