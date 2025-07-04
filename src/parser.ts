@@ -113,7 +113,9 @@ const parser = (markdown: string) => {
           alt: isImage[1],
         },
       ];
-    } else {
+    } else if(!line){
+      part_ast = [];
+    }else {
       part_ast = [
         {
           type: "paragraph",
@@ -125,7 +127,7 @@ const parser = (markdown: string) => {
     ast.push(...part_ast);
     i++;
   }
-  
+
   // return ast;
   return ast;
 };
