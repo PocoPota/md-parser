@@ -1,15 +1,20 @@
-# H1 a
-## H2 # a
-### H3
+# 私の一日
 
-どうも**あああ**はい**aaa**
+## 朝のルーティン
 
-- list1
-- list2
-- aaa*italic*aaa
+毎朝、**コーヒー**を飲みながら、*ニュース*を読みます。
 
-`text.com`
+- 起床：7:00 AM  
+- 朝食：トーストと目玉焼き  
+- 散歩：30分程度
 
-参考文献：[example.com](https://example.com)。
+- Markdownの書き方
+- Gitの基本操作
 
-![写真です](https://example.com/image.png)
+参考資料：[Markdown Guide](https:/example.com/)
+
+![猫の写真](https://example.com/sample.png)
+
+## コードスニペット
+
+`script.js`を以下のように変更します。
