@@ -15,7 +15,7 @@ const parser = (markdown: string) => {
         value: node,
       },
     ];
-    const regex = /(\*\*|\*)(.*?)\1/;
+    const regex = /(\*\*|\*|`)(.*?)\1/;
     const matched = node.match(regex);
     console.log(matched);
     if (matched) {
@@ -26,6 +26,9 @@ const parser = (markdown: string) => {
           break;
         case "*":
           type = "italic";
+          break;
+        case "`":
+          type = "code_inline";
           break;
       }
       part_ast = [
