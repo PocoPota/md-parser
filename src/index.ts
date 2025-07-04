@@ -1,21 +1,20 @@
 // generator開発
 
-// import ast from "../datas/gen_sample_mim.json";
-// import generator from "./generator";
-
-// const html = generator(ast);
-
-// ファイルへ書き込み
-// import fs from "fs";
-// fs.writeFile("./datas/gen_sample.html", html, (err: NodeJS.ErrnoException | null) => {
-//   if (err) throw err;
-//   console.log('正常に書き込みが完了しました');
-// });
-
 import parser from "./parser";
-import { readFileSync } from "fs";
+import generator from "./generator";
+import { readFileSync, writeFile } from "fs";
 import path from "path";
 
+// ファイル取得
 const filePath = path.join(__dirname, "..", "datas", "prs_sample.md");
 const markdown = readFileSync(filePath, "utf-8");
-console.dir(parser(markdown), { depth: null });
+
+const ast = parser(markdown);
+
+const html = generator(ast);
+
+// ファイルへ書き込み
+writeFile("./datas/gen_sample.html", html, (err: NodeJS.ErrnoException | null) => {
+  if (err) throw err;
+  console.log('正常に書き込みが完了しました');
+});
