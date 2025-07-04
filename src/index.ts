@@ -18,4 +18,4 @@ import path from "path";
 
 const filePath = path.join(__dirname, "..", "datas", "prs_sample.md");
 const markdown = readFileSync(filePath, "utf-8");
-console.log(parser(markdown));
+console.log('%o', parser(markdown));
