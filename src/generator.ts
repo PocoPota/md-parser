@@ -56,6 +56,11 @@ const generator = (ast: Array<Token>) => {
       return html;
     };
 
+    const type_image = (token: Token) =>{
+      const html = `<img src="${token.url}" alt="${token.alt}">`;
+      return html;
+    }
+
     let html = "";
 
     for (let i = 0; i < tokens.length; i++) {
@@ -71,6 +76,7 @@ const generator = (ast: Array<Token>) => {
         list: type_list,
         list_item: type_list_item,
         link: type_link,
+        image: type_image
       };
 
       const token_type = tokens[i].type;
