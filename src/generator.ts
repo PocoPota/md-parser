@@ -61,6 +61,13 @@ const generator = (ast: Array<Token>) => {
       return html;
     }
 
+    const type_code_inline = (token: Token) =>{
+      const children = token.children && _generator(token.children);
+
+      const html = `<code>${children}</code>`;
+      return html;
+    }
+
     let html = "";
 
     for (let i = 0; i < tokens.length; i++) {
@@ -76,7 +83,8 @@ const generator = (ast: Array<Token>) => {
         list: type_list,
         list_item: type_list_item,
         link: type_link,
-        image: type_image
+        image: type_image,
+        code_inline: type_code_inline
       };
 
       const token_type = tokens[i].type;
