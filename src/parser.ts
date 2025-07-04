@@ -15,13 +15,23 @@ const parser = (markdown: string) => {
         value: node,
       },
     ];
-    const regex = /(\*\*)(.*?)\1/;
+    const regex = /(\*\*|\*)(.*?)\1/;
     const matched = node.match(regex);
+    console.log(matched);
     if (matched) {
+      let type = "";
+      switch (matched[1]){
+        case "**":
+          type = "strong";
+          break;
+        case "*":
+          type = "italic";
+          break;
+      }
       part_ast = [
         ..._parser(node.slice(0, matched.index)),
         {
-          type: "strong",
+          type: type,
           children: [..._parser(matched[2])],
         },
         ..._parser(node.slice((matched.index || 0) + matched[0].length)),

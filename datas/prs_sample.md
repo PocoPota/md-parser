@@ -6,6 +6,6 @@
 
 - list1
 - list2
-- aaa**bold**aaa
+- aaa*italic*aaa
 
 aa
