@@ -15,12 +15,17 @@ const parser = (markdown: string) => {
         value: node,
       },
     ];
+
+    // 囲み文字の処理
     const regex = /(\*\*|\*|`)(.*?)\1/;
-    const matched = node.match(regex);
-    console.log(matched);
-    if (matched) {
+    const isEnclosed = node.match(regex);
+
+    // リンクの処理
+    const isContainLink = node.match(/\[(.*?)\]\((.*?)\)/);
+
+    if (isEnclosed) {
       let type = "";
-      switch (matched[1]){
+      switch (isEnclosed[1]){
         case "**":
           type = "strong";
           break;
@@ -32,12 +37,23 @@ const parser = (markdown: string) => {
           break;
       }
       part_ast = [
-        ..._parser(node.slice(0, matched.index)),
+        ..._parser(node.slice(0, isEnclosed.index)),
         {
           type: type,
-          children: [..._parser(matched[2])],
+          children: [..._parser(isEnclosed[2])],
         },
-        ..._parser(node.slice((matched.index || 0) + matched[0].length)),
+        ..._parser(node.slice((isEnclosed.index || 0) + isEnclosed[0].length)),
+      ];
+    }else if(isContainLink){
+      // リンクの処理
+      part_ast = [
+        ..._parser(node.slice(0, isContainLink.index)),
+        {
+          type: "link",
+          url: isContainLink[2],
+          children: [..._parser(isContainLink[1])],
+        },
+        ..._parser(node.slice((isContainLink.index || 0) + isContainLink[0].length)),
       ];
     }
     return part_ast;
@@ -101,6 +117,9 @@ const parser = (markdown: string) => {
     ast.push(...part_ast);
     i++;
   }
+
+  const str = "ああああああ[title](url)あああああ";
+  console.log(str.match(/\[(.*?)\]\((.*?)\)/))
 
   // return ast;
   return ast;
