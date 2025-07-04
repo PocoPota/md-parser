@@ -11,3 +11,5 @@
 `text.com`
 
 参考文献：[example.com](https://example.com)。
+
+![写真です](https://example.com/image.png)

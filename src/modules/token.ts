@@ -4,4 +4,5 @@ export type Token = {
   value?: string;
   level?: number;
   url?: string;
+  alt?: string;
 };

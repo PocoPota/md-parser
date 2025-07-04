@@ -21,11 +21,11 @@ const parser = (markdown: string) => {
     const isEnclosed = node.match(regex);
 
     // リンクの処理
-    const isContainLink = node.match(/\[(.*?)\]\((.*?)\)/);
+    const isLink = node.match(/\[(.*?)\]\((.*?)\)/);
 
     if (isEnclosed) {
       let type = "";
-      switch (isEnclosed[1]){
+      switch (isEnclosed[1]) {
         case "**":
           type = "strong";
           break;
@@ -44,16 +44,15 @@ const parser = (markdown: string) => {
         },
         ..._parser(node.slice((isEnclosed.index || 0) + isEnclosed[0].length)),
       ];
-    }else if(isContainLink){
-      // リンクの処理
+    } else if (isLink) {
       part_ast = [
-        ..._parser(node.slice(0, isContainLink.index)),
+        ..._parser(node.slice(0, isLink.index)),
         {
           type: "link",
-          url: isContainLink[2],
-          children: [..._parser(isContainLink[1])],
+          url: isLink[2],
+          children: [..._parser(isLink[1])],
         },
-        ..._parser(node.slice((isContainLink.index || 0) + isContainLink[0].length)),
+        ..._parser(node.slice((isLink.index || 0) + isLink[0].length)),
       ];
     }
     return part_ast;
@@ -85,7 +84,7 @@ const parser = (markdown: string) => {
       const list_items = [];
       const parsed_list_items: Array<Token> = [];
       let k = 0;
-      for (k; (i+k) < lines.length; k++) {
+      for (k; i + k < lines.length; k++) {
         if (lines[i + k].startsWith("- ")) {
           list_items.push(lines[i + k]);
         } else {
@@ -95,8 +94,8 @@ const parser = (markdown: string) => {
       list_items.map((list_item) => {
         parsed_list_items.push({
           type: "list_item",
-          children: [..._parser(list_item.slice(2))]
-        })
+          children: [..._parser(list_item.slice(2))],
+        });
       });
       part_ast = [
         {
@@ -105,6 +104,15 @@ const parser = (markdown: string) => {
         },
       ];
       i += k;
+    } else if (line.match(/!\[(.*?)\]\((.*?)\)/)) {
+      const isImage = line.match(/!\[(.*?)\]\((.*?)\)/) || [];
+      part_ast = [
+        {
+          type: "image",
+          url: isImage[2],
+          alt: isImage[1],
+        },
+      ];
     } else {
       part_ast = [
         {
@@ -117,10 +125,7 @@ const parser = (markdown: string) => {
     ast.push(...part_ast);
     i++;
   }
-
-  const str = "ああああああ[title](url)あああああ";
-  console.log(str.match(/\[(.*?)\]\((.*?)\)/))
-
+  
   // return ast;
   return ast;
 };
