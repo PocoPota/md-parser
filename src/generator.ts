@@ -1,4 +1,4 @@
-import { Token } from "./modules/token";
+import type { Token } from "./modules/token";
 
 const generator = (ast: Array<Token>) => {
   const _generator = (tokens: Array<Token>) => {

@@ -1,4 +1,4 @@
-import { Token } from "./modules/token";
+import type { Token } from "./modules/token";
 
 const parser = (markdown: string) => {
   const ast: Array<Token> = [];
