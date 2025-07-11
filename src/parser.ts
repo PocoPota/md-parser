@@ -1,4 +1,3 @@
-import { parse } from "path";
 import type { Token } from "./modules/token";
 
 const parser = (markdown: string) => {
