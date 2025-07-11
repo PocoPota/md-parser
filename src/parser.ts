@@ -1,3 +1,4 @@
+import { parse } from "path";
 import type { Token } from "./modules/token";
 
 const parser = (markdown: string) => {
@@ -114,6 +115,38 @@ const parser = (markdown: string) => {
           children: [...parsed_list_items],
         },
       ];
+      i += k;
+    } else if (line.startsWith("> ")) {
+      // list 処理
+      // 以降のlineもチェック
+      const quote_items = [];
+      let k = 0;
+      for (k; i + k < lines.length; k++) {
+        if (lines[i + k].startsWith("> ")) {
+          quote_items.push(lines[i + k]);
+        } else {
+          break;
+        }
+      }
+      if(quote_items.length === 1){
+        part_ast = [
+          {
+            type: "inlinequote",
+            children: _parser(quote_items[0].slice(2))
+          }
+        ]
+      }else{
+        let inner_markdown = "";
+        quote_items.map((quote_items) => {
+          inner_markdown += quote_items.slice(2) + "\n";
+        });
+        part_ast = [
+          {
+            type: "blockquote",
+            children: parser(inner_markdown),
+          },
+        ];
+      }
       i += k;
     } else if (!line) {
       part_ast = [];

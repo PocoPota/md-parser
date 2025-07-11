@@ -56,17 +56,31 @@ const generator = (ast: Array<Token>) => {
       return html;
     };
 
-    const type_image = (token: Token) =>{
+    const type_image = (token: Token) => {
       const html = `<img src="${token.url}" alt="${token.alt}">`;
       return html;
-    }
+    };
 
-    const type_code_inline = (token: Token) =>{
+    const type_code_inline = (token: Token) => {
       const children = token.children && _generator(token.children);
 
       const html = `<code>${children}</code>`;
       return html;
-    }
+    };
+
+    const type_inlinequote = (token: Token) => {
+      const children = token.children && _generator(token.children);
+
+      const html = `<q>${children}</q>`;
+      return html;
+    };
+
+    const type_blockquote = (token: Token) => {
+      const children = token.children && _generator(token.children);
+
+      const html = `<blockquote>${children}</blockquote>`;
+      return html;
+    };
 
     let html = "";
 
@@ -84,7 +98,9 @@ const generator = (ast: Array<Token>) => {
         list_item: type_list_item,
         link: type_link,
         image: type_image,
-        code_inline: type_code_inline
+        code_inline: type_code_inline,
+        inlinequote: type_inlinequote,
+        blockquote: type_blockquote,
       };
 
       const token_type = tokens[i].type;
