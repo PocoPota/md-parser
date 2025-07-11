@@ -44,7 +44,7 @@ const parser = (markdown: string) => {
         ..._parser(node.slice(0, isEnclosed.index)),
         {
           type: type,
-          children: [..._parser(isEnclosed[2])],
+          children: _parser(isEnclosed[2]),
         },
         ..._parser(node.slice((isEnclosed.index || 0) + isEnclosed[0].length)),
       ];
@@ -62,7 +62,7 @@ const parser = (markdown: string) => {
         {
           type: "link",
           url: isLink[2],
-          children: [..._parser(isLink[1])],
+          children: _parser(isLink[1]),
         },
         ..._parser(node.slice((isLink.index || 0) + isLink[0].length)),
       ];
@@ -87,7 +87,7 @@ const parser = (markdown: string) => {
         {
           type: "heading",
           level: part_string[0].length,
-          children: [..._parser(line.slice(part_string[0].length + 1))],
+          children: _parser(line.slice(part_string[0].length + 1)),
         },
       ];
     } else if (line.startsWith("- ")) {
@@ -106,7 +106,7 @@ const parser = (markdown: string) => {
       list_items.map((list_item) => {
         parsed_list_items.push({
           type: "list_item",
-          children: [..._parser(list_item.slice(2))],
+          children: _parser(list_item.slice(2)),
         });
       });
       part_ast = [
@@ -154,7 +154,7 @@ const parser = (markdown: string) => {
       part_ast = [
         {
           type: "paragraph",
-          children: [..._parser(line)],
+          children: _parser(line),
         },
       ];
     }
