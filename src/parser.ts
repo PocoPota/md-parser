@@ -116,7 +116,7 @@ const parser = (markdown: string) => {
       ];
       i += k;
     } else if (line.startsWith("> ")) {
-      // list 処理
+      // quote 処理
       // 以降のlineもチェック
       const quote_items = [];
       let k = 0;
