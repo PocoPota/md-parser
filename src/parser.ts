@@ -20,6 +20,9 @@ const parser = (markdown: string) => {
     const regex = /(\*\*|\*|`)(.*?)\1/;
     const isEnclosed = node.match(regex);
 
+    // 画像の処理
+    const isImage = node.match(/!\[(.*?)\]\((.*?)\)/);
+
     // リンクの処理
     const isLink = node.match(/\[(.*?)\]\((.*?)\)/);
 
@@ -43,6 +46,14 @@ const parser = (markdown: string) => {
           children: [..._parser(isEnclosed[2])],
         },
         ..._parser(node.slice((isEnclosed.index || 0) + isEnclosed[0].length)),
+      ];
+    } else if (isImage) {
+      part_ast = [
+        {
+          type: "image",
+          url: isImage[2],
+          alt: isImage[1],
+        },
       ];
     } else if (isLink) {
       part_ast = [
@@ -104,15 +115,6 @@ const parser = (markdown: string) => {
         },
       ];
       i += k;
-    } else if (line.match(/!\[(.*?)\]\((.*?)\)/)) {
-      const isImage = line.match(/!\[(.*?)\]\((.*?)\)/) || [];
-      part_ast = [
-        {
-          type: "image",
-          url: isImage[2],
-          alt: isImage[1],
-        },
-      ];
     } else if (!line) {
       part_ast = [];
     } else {
