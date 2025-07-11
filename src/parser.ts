@@ -112,7 +112,7 @@ const parser = (markdown: string) => {
       part_ast = [
         {
           type: "list",
-          children: [...parsed_list_items],
+          children: parsed_list_items,
         },
       ];
       i += k;
