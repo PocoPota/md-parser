@@ -90,25 +90,24 @@ const generator = (ast: Array<Token>) => {
     };
 
     const type_table_row = (token: Token) => {
-      const isHeader =  token.isHeader ? token.isHeader : false;
+      const isHeader = token.isHeader ? token.isHeader : false;
       const children = token.children && _generator(token.children);
       let html = `<tbody><tr>${children}</tr></tbody>`;
-      if(isHeader){
+      if (isHeader) {
         html = `<thead><tr>${children}</tr></thead>`;
       }
       return html;
     };
 
     const type_table_cell = (token: Token) => {
-      const isHeader =  token.isHeader ? token.isHeader : false;
+      const isHeader = token.isHeader ? token.isHeader : false;
       const children = token.children && _generator(token.children);
       let html = `<td>${children}</td>`;
-      if(isHeader){
+      if (isHeader) {
         html = `<th>${children}</th>`;
       }
       return html;
     };
-
 
     let html = "";
 
@@ -131,7 +130,7 @@ const generator = (ast: Array<Token>) => {
         blockquote: type_blockquote,
         table: type_table,
         table_row: type_table_row,
-        table_cell: type_table_cell
+        table_cell: type_table_cell,
       };
 
       const token_type = tokens[i].type;

@@ -127,14 +127,14 @@ const parser = (markdown: string) => {
           break;
         }
       }
-      if(quote_items.length === 1){
+      if (quote_items.length === 1) {
         part_ast = [
           {
             type: "inlinequote",
-            children: _parser(quote_items[0].slice(2))
-          }
-        ]
-      }else{
+            children: _parser(quote_items[0].slice(2)),
+          },
+        ];
+      } else {
         let inner_markdown = "";
         quote_items.map((quote_items) => {
           inner_markdown += quote_items.slice(2) + "\n";
@@ -147,49 +147,49 @@ const parser = (markdown: string) => {
         ];
       }
       i += k;
-    }else if(line.match(/^\|([^|]*\|)+$/)){
+    } else if (line.match(/^\|([^|]*\|)+$/)) {
       // table処理
       // 以降のlineもチェック
       const table_lines = [];
       let separator_num = -1;
       let k = 0;
-      for (k; i+k < lines.length; k++){
-        if(lines[i+k].match(/^\|([^|]*\|)+$/)){
-          table_lines.push(lines[i+k]);
-          if(lines[i+k].match(/^\|(:?-+:?\|)+$/)){
-            separator_num = i+k;
+      for (k; i + k < lines.length; k++) {
+        if (lines[i + k].match(/^\|([^|]*\|)+$/)) {
+          table_lines.push(lines[i + k]);
+          if (lines[i + k].match(/^\|(:?-+:?\|)+$/)) {
+            separator_num = i + k;
           }
-        }else{
+        } else {
           break;
         }
       }
       let table_rows = [];
-      for (let j = 0; j < table_lines.length; j++){
+      for (let j = 0; j < table_lines.length; j++) {
         const cell_contents = table_lines[j].match(/\|([^|\n]+)/g);
-        let table_cells:Array<Token> = [];
-        const isHeader = (j<separator_num) ? true : false;
-        cell_contents?.map((cell)=>{
+        let table_cells: Array<Token> = [];
+        const isHeader = j < separator_num ? true : false;
+        cell_contents?.map((cell) => {
           table_cells.push({
             type: "table_cell",
             isHeader,
-            children: _parser(cell.slice(1).trim())
+            children: _parser(cell.slice(1).trim()),
           });
-        })
-        if(j!=separator_num){
+        });
+        if (j != separator_num) {
           table_rows.push({
             type: "table_row",
             isHeader,
-            children: table_cells
+            children: table_cells,
           });
         }
       }
       part_ast = [
         {
           type: "table",
-          children: table_rows
-        }
-      ]
-      i+=k;
+          children: table_rows,
+        },
+      ];
+      i += k;
     } else if (!line) {
       part_ast = [];
     } else {
