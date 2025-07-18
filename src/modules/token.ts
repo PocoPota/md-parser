@@ -5,4 +5,5 @@ export type Token = {
   level?: number;
   url?: string;
   alt?: string;
+  isHeader?: boolean
 };
