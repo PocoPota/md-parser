@@ -167,13 +167,14 @@ const parser = (markdown: string) => {
       for (let j = 0; j < table_lines.length; j++){
         const cell_contents = table_lines[j].match(/\|([^|\n]+)/g);
         let table_cells:Array<Token> = [];
+        const isHeader = (j<separator_num) ? true : false;
         cell_contents?.map((cell)=>{
           table_cells.push({
             type: "table_cell",
+            isHeader,
             children: _parser(cell.slice(1).trim())
           });
         })
-        const isHeader = (j<separator_num) ? true : false;
         if(j!=separator_num){
           table_rows.push({
             type: "table_row",
@@ -189,7 +190,6 @@ const parser = (markdown: string) => {
         }
       ]
       i+=k;
-      console.log(...part_ast);
     } else if (!line) {
       part_ast = [];
     } else {
