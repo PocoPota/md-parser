@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const parser = (markdown) => {
     const ast = [];
     const _parser = (node) => {
@@ -210,4 +208,4 @@ const parser = (markdown) => {
     // return ast;
     return ast;
 };
-exports.default = parser;
+export default parser;

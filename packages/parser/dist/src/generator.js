@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const generator = (ast) => {
     const _generator = (tokens) => {
         const type_text = (token) => {
@@ -114,4 +112,4 @@ const generator = (ast) => {
     };
     return _generator(ast);
 };
-exports.default = generator;
+export default generator;

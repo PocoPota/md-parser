@@ -1,0 +1,8 @@
+---
+// Astro内でJSを動かすにはクライアントコンポーネントが必要
+import EditorPreviewClient from './EditorPreviewClient.tsx';
+---
+
+<div style="height: 100vh; display: flex;">
+  <EditorPreviewClient client:load />
+</div>

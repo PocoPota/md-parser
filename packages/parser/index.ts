@@ -6,3 +6,5 @@ export default function parseMarkdown(markdown: string): string {
   const html = generator(ast);
   return html;
 }
+
+export { parseMarkdown };

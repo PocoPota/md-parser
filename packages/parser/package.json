@@ -1,6 +1,7 @@
 {
   "name": "@pocopota/md-parser",
   "version": "1.0.0",
+  "type": "module",
   "main": "dist/index.js",
   "files": ["dist"],
   "scripts": {
@@ -8,7 +9,7 @@
     "exec": "ts-node src/dev.ts",
     "build": "tsc"
   },
-  "private": true,
+  "private": false,
   "author": "",
   "license": "ISC",
   "description": "",

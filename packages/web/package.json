@@ -9,6 +9,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.12.1"
+    "@astrojs/react": "^4.3.0",
+    "@types/react-dom": "^19.1.6",
+    "astro": "^5.12.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@pocopota/md-parser": "workspace:*",
+    "@types/react": "^19.1.8"
   }
 }
