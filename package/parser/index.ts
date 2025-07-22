@@ -1,7 +1,7 @@
 import parser from "./src/parser";
 import generator from "./src/generator";
 
-export default function mdToHtml(markdown: string) {
+export default function parseMarkdown(markdown: string): string {
   const ast = parser(markdown);
   const html = generator(ast);
   return html;
