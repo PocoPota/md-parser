@@ -17,23 +17,10 @@ export default function EditorPreviewClient() {
       <textarea
         value={input}
         onChange={handleInput}
-        style={{
-          width: "50%",
-          height: "100vh",
-          padding: "1rem",
-          fontSize: "1rem",
-          boxSizing: "border-box",
-        }}
+        className="editor-textarea"
       />
       <div
-        style={{
-          width: "50%",
-          height: "100vh",
-          padding: "1rem",
-          overflowY: "auto",
-          boxSizing: "border-box",
-          borderLeft: "1px solid #ccc",
-        }}
+        className="preview-pane"
         dangerouslySetInnerHTML={{ __html: previewHtml }}
       />
     </>

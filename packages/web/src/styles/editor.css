@@ -1,0 +1,17 @@
+/* Editor styles */
+.editor-textarea {
+  width: 50%;
+  height: 100vh;
+  padding: 1rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.preview-pane {
+  width: 50%;
+  height: 100vh;
+  padding: 1rem;
+  overflow-y: auto;
+  box-sizing: border-box;
+  border-left: 1px solid #ccc;
+}
