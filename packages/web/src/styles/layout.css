@@ -1,0 +1,29 @@
+/* Layout styles */
+header {
+  padding: 16px;
+  border-bottom: 1px solid #ccc;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  margin: 0;
+}
+
+.header-title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+main {
+  padding: 16px;
+}
+
+.editor-container {
+  height: 100vh;
+  display: flex;
+}

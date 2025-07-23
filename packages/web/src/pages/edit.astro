@@ -1,5 +1,6 @@
 ---
 import EditorPreview from '../components/EditorPreview.astro';
+import AuthButton from "../components/AuthButton.tsx";
 ---
 
 <html lang="en">
@@ -9,8 +10,17 @@ import EditorPreview from '../components/EditorPreview.astro';
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro</title>
+		<link rel="stylesheet" href="/src/styles/layout.css" />
+		<link rel="stylesheet" href="/src/styles/editor.css" />
+		<link rel="stylesheet" href="/src/styles/auth.css" />
 	</head>
 	<body>
+		<header>
+			<div class="header-content">
+				<h1 class="header-title"><a href="/">Markdown Parser</a></h1>
+				<AuthButton client:load />
+			</div>
+		</header>
 		<EditorPreview />
 	</body>
 </html>
