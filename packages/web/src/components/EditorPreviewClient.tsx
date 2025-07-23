@@ -19,10 +19,9 @@ export default function EditorPreviewClient() {
         onChange={handleInput}
         className="editor-textarea"
       />
-      <div
-        className="preview-pane"
-        dangerouslySetInnerHTML={{ __html: previewHtml }}
-      />
+      <div className="preview-pane">
+        <article dangerouslySetInnerHTML={{ __html: previewHtml }} />
+      </div>
     </>
   );
 }
