@@ -1,21 +1,25 @@
 {
-  "name": "md-parser",
-  "version": "1.0.0",
-  "description": "",
-  "homepage": "https://github.com/PocoPota/md-parser#readme",
-  "bugs": {
-    "url": "https://github.com/PocoPota/md-parser/issues"
+  "name": "@pocopota/md-parser",
+  "version": "1.0.0-alpha.1",
+  "publishConfig": {
+    "access": "public"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/PocoPota/md-parser.git"
-  },
-  "license": "ISC",
-  "author": "",
-  "type": "commonjs",
-  "main": "index.js",
+  "description": "A simple Markdown parser that converts Markdown to HTML",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
-  "private": true
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "prettier": "^3.5.3"
+  }
 }
